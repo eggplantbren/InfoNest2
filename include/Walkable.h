@@ -12,11 +12,12 @@ namespace InfoNest2
 // to work with InfoNest2.
 
 template<typename T>
-concept Walkable = requires(T t, RNG& rng, std::ostream& o)
+concept Walkable = requires(T t, T t2, RNG& rng, std::ostream& o)
 {
     { t.generate(rng) } -> std::same_as<void>;
     { t.perturb(rng)  } -> std::convertible_to<double>;
     { o << t } -> std::same_as<std::ostream&>;
+    { t.distance(t2) } -> std::same_as<double>;
 };
 
 
